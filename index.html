@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matthew Merrigan</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text:        #1a1612;
+      --muted:       #6b5e4e;
+      --faint:       #9e8e7e;
+      --link:        #7a3e1e;
+      --link-hover:  #4e2710;
+      --border:      #ddd5c8;
+      --bg:          #faf8f5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      background: var(--bg);
+      color: var(--text);
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: start;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-text h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .header-meta {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.9rem;
+    }
+    .header-links {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .header-links a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .header-links a:hover { text-decoration: underline; color: var(--link-hover); }
+    .sep { margin: 0 0.45rem; color: var(--faint); }
+
+    .headshot-placeholder {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background: #ede8df;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--faint);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 0.5rem;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    /* ── BIO ── */
+    .bio {
+      margin-bottom: 3.2rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+    .bio p + p { margin-top: 0.9rem; }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 3rem; }
+    section h2 {
+      font-size: 0.78rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── PAPERS ── */
+    .paper-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .paper-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.45;
+      margin-bottom: 0.15rem;
+    }
+    .paper-title a { color: var(--link); text-decoration: none; }
+    .paper-title a:hover { text-decoration: underline; color: var(--link-hover); }
+    .paper-byline {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.25rem;
+    }
+    .paper-byline .venue { font-style: normal; font-weight: 500; color: var(--text); }
+
+    .abstract-toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--faint);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.15s;
+      margin-top: 0.2rem;
+    }
+    .abstract-toggle:hover { color: var(--link); }
+    .abstract-toggle .arr { display: inline-block; transition: transform 0.18s; font-style: normal; font-size: 0.65rem; }
+    .abstract-toggle.open .arr { transform: rotate(90deg); }
+
+    .abstract-body {
+      display: none;
+      margin-top: 0.65rem;
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+    .abstract-body.open { display: block; }
+
+    /* ── WIP ── */
+    .wip-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .wip-item { font-size: 1.03rem; line-height: 1.5; }
+    .wip-item .coauthor { font-size: 0.9rem; font-style: italic; color: var(--muted); }
+
+    /* ── CV ── */
+    .cv-group + .cv-group { margin-top: 1.4rem; }
+    .cv-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 0.55rem;
+    }
+    .cv-entries { display: flex; flex-direction: column; gap: 0.45rem; }
+    .cv-row {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0.8rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .cv-yr { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--faint); padding-top: 0.12rem; }
+    .cv-detail { font-style: italic; color: var(--muted); font-size: 0.9rem; }
+
+    /* ── CONTACT ── */
+    .contact-row { font-size: 1rem; }
+    .contact-row a { color: var(--link); text-decoration: none; margin-right: 1.2rem; }
+    .contact-row a:hover { text-decoration: underline; color: var(--link-hover); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--faint);
+    }
+
+    @media (max-width: 500px) {
+      .site-header { grid-template-columns: 1fr; }
+      .headshot-placeholder { display: none; }
+      body { padding: 2.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-text">
+      <h1>Matthew Merrigan</h1>
+      <p class="header-meta">
+        Ph.D. Candidate · Political Economics · Stanford University
+      </p>
+      <div class="header-links">
+        <a href="/cdn-cgi/l/email-protection#076a6275756e60666947747366696168756329626372">merrigan (at) stanford (dot) edu</a>
+        <span class="sep">·</span>
+        <a href="cv.pdf">CV</a>
+        <span class="sep">·</span>
+        <a href="https://x.com/mbmerrigan" target="_blank">Twitter/X</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/mbmerrigan" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <img src="headshot.jpg" style="width:115px;height:115px;border-radius:50%;border:1px solid #ddd5c8;object-fit:cover;" />
+
+  </header>
+
+  <!-- BIO -->
+  <div class="bio">
+    <p>
+      I am a fourth-year Ph.D. candidate in the Political Economy group at Stanford University.
+      My research sits at the intersection of corporate non-market strategy and American political
+      economy, studying how corporate political activity shapes the behavior of employees and other
+      stakeholders — combining large-scale administrative data, original survey experiments, and
+      text-as-data methods.
+    </p>
+  </div>
+
+  <!-- WORKING PAPERS -->
+  <section>
+    <h2>Working Papers</h2>
+    <div class="paper-list">
+      <div>
+        <p class="paper-title"><a href="merrigan_corporate_stances.pdf">Can Corporate Partisanship Move Employee Politics? Evidence from Campaign Contributions</a></p>
+        <p class="paper-byline">2026</p>
+        <button class="abstract-toggle" onclick="toggleAbstract(this)"><span class="arr">▶</span> Abstract</button>
+        <div class="abstract-body">
+          Public corporate political stances have become a prominent — and often explicitly partisan — form of
+          engagement, yet we know little about their political spillovers among employees. This paper
+          studies whether stance-taking affects employee campaign contributions, distinguishing between
+          donations to outside political actors and employer-linked channels such as corporate political
+          action committees (PACs). Using hand-collected stance events linked to administrative records on
+          employment and itemized giving, I first estimate a stacked difference-in-differences design with
+          industry- and year-matched controls. Corporate stances increase employee giving on both the
+          intensive and extensive margins, with effects concentrated among ideologically aligned employees.
+          To sharpen inference about mechanisms and moderation — especially for institutionally mediated
+          PAC giving — I field a survey experiment that randomizes employer stance direction across three
+          issue domains and measure behavior using an incentive-compatible $1.00 donation-allocation task.
+          Experimental results mirror the field evidence: aligned respondents increase PAC giving, while
+          misaligned respondents exhibit backlash via increased co-partisan giving. Substantively, the
+          findings reposition the firm as an intermediary institution in democratic politics, shaping not
+          only whether employees participate but where political money flows through organizational
+          channels, with downstream implications for polarization, representation, and firms' role in
+          contemporary democracy.
+        </div>
+      </div>
+
+      <div>
+        <p class="paper-title"><a href="RealAvatar_White_Paper.pdf">Rethinking AI from Classroom Adversary to Classroom Ally</a></p>
+        <p class="paper-byline">with Erik Brynjolfsson · 2025</p>
+        <button class="abstract-toggle" onclick="toggleAbstract(this)"><span class="arr">▶</span> Abstract</button>
+        <div class="abstract-body">
+          We introduce RealAvatar, an AI-enabled learning companion, into Stanford's course The AI Awakening.
+          Trained on course materials and Professor Brynjolfsson's voice and mannerisms, the avatar provides
+          students with real-time feedback and technical mentorship. Drawing on end-of-quarter survey data
+          from 69 students, we document student preferences across voice and text interaction modes, compare
+          engagement across assignments with and without RealAvatar, and analyze how perceived avatar
+          personality — particularly combativeness versus acquiescence — shapes satisfaction. Students who
+          perceived the avatar as more combative report significantly higher satisfaction across usefulness,
+          depth of thinking, goal achievement, and informativeness, suggesting that constructive challenge
+          is a key ingredient in effective AI-assisted learning.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WIP -->
+  <section>
+    <h2>Works in Progress</h2>
+    <div class="wip-list">
+      <div class="wip-item">
+        Paying for Protection: Understanding the Effects of Market Competition on Firm Lobbying Strategy
+        <button class="abstract-toggle" onclick="toggleAbstract(this)" style="display:block;margin-top:0.3rem;"><span class="arr">▶</span> Abstract</button>
+        <div class="abstract-body">
+          This paper studies how firms change their lobbying behavior following a regulatory shock that impacts
+          market competition, grounding itself within the literature on non-market strategies firms use to
+          gain and maintain market power. Using firm-level data on drug development and patenting from the
+          pharmaceutical industry (2005–2020), I focus on pay-for-delay agreements — a mechanism through
+          which incumbents historically paid generic manufacturers to delay market entry. When unconstrained,
+          firms reduce lobbying in response to higher competition. I then exploit FTC v. Actavis (2013),
+          which made pay-for-delay agreements liable to antitrust suits, as an exogenous shock. After 2013,
+          incumbent firms increase lobbying activity in response to generic entry, with effects strongest
+          among firms with drugs nearing marketing exclusivity expiration. The findings affirm that firms
+          actively utilize non-market mechanisms to maintain market power, and that threatened incumbents
+          shift resources into political protection to escape the competition.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2>Contact</h2>
+    <div class="contact-row">
+      <a href="/cdn-cgi/l/email-protection#563b3324243f31373816252237383039243278333223"><span class="__cf_email__" data-cfemail="cda0a8bfbfa4aaaca38dbeb9aca3aba2bfa9e3a8a9b8">[email&#160;protected]</span></a>
+      <a href="cv.pdf">CV (PDF)</a>
+      <a href="https://www.linkedin.com/in/matthew-merrigan-651329149/" target="_blank">LinkedIn</a>
+      <a href="https://x.com/mbmerrigan" target="_blank">Twitter/X</a>
+      <a href="https://github.com/mbmerrigan" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <footer>Last updated Marc
