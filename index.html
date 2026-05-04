@@ -9,7 +9,7 @@
   <meta name="author" content="Matthew Merrigan" />
   <link rel="canonical" href="https://mbmerrigan.github.io/" />
 
-  <!-- Open Graph (controls how link previews look in Slack, Twitter, etc.) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Matthew Merrigan | PhD Candidate, Stanford Political Economics" />
   <meta property="og:description" content="PhD candidate studying corporate political activity, non-market strategy, and employee political behavior." />
   <meta property="og:url" content="https://mbmerrigan.github.io/" />
@@ -99,25 +99,6 @@
     .header-links a:hover { text-decoration: underline; color: var(--link-hover); }
     .sep { margin: 0 0.45rem; color: var(--faint); }
 
-    .headshot-placeholder {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      background: #ede8df;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--faint);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.06em;
-      text-align: center;
-      padding: 0.5rem;
-      line-height: 1.5;
-      flex-shrink: 0;
-    }
-
     /* ── BIO ── */
     .bio {
       margin-bottom: 3.2rem;
@@ -154,7 +135,6 @@
       font-style: italic;
       margin-bottom: 0.25rem;
     }
-    .paper-byline .venue { font-style: normal; font-weight: 500; color: var(--text); }
 
     .abstract-toggle {
       background: none;
@@ -190,29 +170,6 @@
     /* ── WIP ── */
     .wip-list { display: flex; flex-direction: column; gap: 0.65rem; }
     .wip-item { font-size: 1.03rem; line-height: 1.5; }
-    .wip-item .coauthor { font-size: 0.9rem; font-style: italic; color: var(--muted); }
-
-    /* ── CV ── */
-    .cv-group + .cv-group { margin-top: 1.4rem; }
-    .cv-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 0.55rem;
-    }
-    .cv-entries { display: flex; flex-direction: column; gap: 0.45rem; }
-    .cv-row {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 0.8rem;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-    .cv-yr { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--faint); padding-top: 0.12rem; }
-    .cv-detail { font-style: italic; color: var(--muted); font-size: 0.9rem; }
 
     /* ── CONTACT ── */
     .contact-row { font-size: 1rem; }
@@ -231,7 +188,6 @@
 
     @media (max-width: 500px) {
       .site-header { grid-template-columns: 1fr; }
-      .headshot-placeholder { display: none; }
       body { padding: 2.5rem 1rem 4rem; }
     }
   </style>
@@ -247,7 +203,7 @@
         Ph.D. Candidate · Political Economics · Stanford University
       </p>
       <div class="header-links">
-        <a href="/cdn-cgi/l/email-protection#076a6275756e60666947747366696168756329626372">merrigan (at) stanford (dot) edu</a>
+        <a href="mailto:merrigan@stanford.edu">merrigan (at) stanford (dot) edu</a>
         <span class="sep">·</span>
         <a href="cv.pdf">CV</a>
         <span class="sep">·</span>
@@ -256,7 +212,7 @@
         <a href="https://github.com/mbmerrigan" target="_blank">GitHub</a>
       </div>
     </div>
-  <img src="headshot.jpg" style="width:115px;height:115px;border-radius:50%;border:1px solid #ddd5c8;object-fit:cover;" />
+    <img src="headshot.jpg" style="width:115px;height:115px;border-radius:50%;border:1px solid #ddd5c8;object-fit:cover;" />
   </header>
 
   <!-- BIO -->
@@ -274,6 +230,7 @@
   <section>
     <h2>Working Papers</h2>
     <div class="paper-list">
+
       <div>
         <p class="paper-title"><a href="merrigan_corporate_stances.pdf">Can Corporate Partisanship Move Employee Politics? Evidence from Campaign Contributions</a></p>
         <p class="paper-byline">2026</p>
@@ -300,9 +257,30 @@
       </div>
 
       <div>
-        <p class="paper-title"><a href="RealAvatar_White_Paper.pdf">Rethinking AI from Classroom Adversary to Classroom Ally</a></p>
-        <p class="paper-byline">with Erik Brynjolfsson · 2025</p>
+        <p class="paper-title"><a href="zhao_rewrite.pdf">Participation, Not Adjustment: Reappraising Partisan Constraints on PAC Fundraising</a></p>
+        <p class="paper-byline">2026 · <em>Under Review at American Political Science Review</em></p>
+        <button class="abstract-toggle" onclick="toggleAbstract(this)"><span class="arr">▶</span> Abstract</button>
+        <div class="abstract-body">
+          Businesses spend far less on campaign contributions than the law allows, a puzzle Li (2018) explains
+          through internal constraint: access-seeking PACs must raise funds through voluntary donations from
+          their sponsor firms' employees, and employees withhold donations when PACs give to the out-party.
+          Li identifies this mechanism on observed donors. I revisit the claim using an original panel of
+          205,522 individual-PAC-cycle observations linking employment records, voter registration, and DIME
+          contribution histories across 2012–2022 — the full eligible-employee population rather than only
+          prior donors. Li's within-donor mechanism holds on ever-donors but does not extend to the broader
+          sample. A specification exploiting cross-individual variation identifies a precisely estimated
+          extensive-margin response: co-partisan employees are substantially more likely to enter donation
+          than out-partisan ones. Mechanisms identified on behaviorally-selected samples — donors, voters,
+          activists — often fail to extend to the populations they are meant to characterize.
+          Population-scale claims require population-scale data.
+        </div>
       </div>
+
+      <div>
+        <p class="paper-title"><a href="RealAvatar_White_Paper.pdf">Rethinking AI from Classroom Adversary to Classroom Ally</a></p>
+        <p class="paper-byline">with Erik Brynjolfsson · 2026 · <em>Under Review at Financial Times</em></p>
+      </div>
+
     </div>
   </section>
 
@@ -313,6 +291,9 @@
       <div class="wip-item">
         Paying for Protection: Understanding the Effects of Market Competition on Firm Lobbying Strategy
       </div>
+      <div class="wip-item">
+        The MRP Illusion: Geographic Memorization, Non-Probability Inflation, and the Aggregate-Disaggregate Alternative
+      </div>
     </div>
   </section>
 
@@ -320,7 +301,7 @@
   <section>
     <h2>Contact</h2>
     <div class="contact-row">
-      <a href="/cdn-cgi/l/email-protection#97faf2e5e5fef0f6f9d7e4e3f6f9f1f8e5f3b9f2f3e2"><span class="__cf_email__" data-cfemail="bbd6dec9c9d2dcdad5fbc8cfdad5ddd4c9df95dedfce">[email&#160;protected]</span></a>
+      <a href="mailto:merrigan@stanford.edu">merrigan@stanford.edu</a>
       <a href="cv.pdf">CV (PDF)</a>
       <a href="https://www.linkedin.com/in/matthew-merrigan-651329149/" target="_blank">LinkedIn</a>
       <a href="https://x.com/mbmerrigan" target="_blank">Twitter/X</a>
@@ -331,4 +312,11 @@
   <footer>Last updated March 2026</footer>
 
 </div>
-<script data-cfasyn
+<script>
+  function toggleAbstract(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
